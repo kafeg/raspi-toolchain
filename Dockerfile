@@ -74,8 +74,8 @@ RUN apt-get update && \
 
 # Download and install the Linux headers
 WORKDIR /home/develop
-#RUN git clone --depth=1 https://github.com/raspberrypi/linux
-RUN git clone https://mirrors.tuna.tsinghua.edu.cn/git/linux.git && git remote add rasp https://github.com/raspberrypi/linux.git && git fetch rasp
+RUN git clone --depth=1 https://github.com/raspberrypi/linux.git
+#RUN git clone https://mirrors.tuna.tsinghua.edu.cn/git/linux.git && git remote add rasp https://github.com/raspberrypi/linux.git && git fetch rasp
 WORKDIR /home/develop/linux
 ENV KERNEL=kernel7
 RUN make ARCH=arm INSTALL_HDR_PATH=/opt/cross-pi-gcc/arm-linux-gnueabihf headers_install
