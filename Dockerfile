@@ -1,7 +1,7 @@
 # https://solarianprogrammer.com/2018/05/06/building-gcc-cross-compiler-raspberry-pi/
 
 # Ubuntu 18.04 at the time of writing (2019-04-02)
-FROM ubuntu:latest
+FROM ubuntu:latest AS build
 
 # This should match the one on your raspi
 ENV GCC_VERSION gcc-8.3.0
@@ -122,3 +122,8 @@ RUN make install
 #RUN make install-gcc
 
 USER develop
+
+FROM ubuntu:latest
+LABEL Description="This is the image for Raspberry Pi, Zero application cross compile on Ubuntu"
+
+COPY --from=build /opt/cross-pi-gcc /opt/cross-pi-gcc
